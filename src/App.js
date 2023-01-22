@@ -14,17 +14,18 @@ type Props = {
   }
 };
 
-const RegistrationForm = ({ onSubmit, initialValues }) => {
+const RegistrationForm = (props: Props) => {
+  const { onSubmit, initialValues } = props;
   const [formData, setFormData] = useState(initialValues);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;
     setFormData({
       ...formData,
       [name]: type === 'checkbox' ? checked : value
     });
   };
-
+  
   const handleSubmit = event => {
     event.preventDefault();
     onSubmit(formData);
